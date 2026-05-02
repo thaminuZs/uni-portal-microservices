@@ -47,6 +47,7 @@ _{
 
 
 **Get Attendance Logs**
+
 > GET /api/lecturers/:id/attendance
 
 ---
