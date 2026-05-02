@@ -1,6 +1,16 @@
 {
-  "dependencies": {},
+  "name": "gateway",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "elysia": "latest"
+  },
   "devDependencies": {
-    "elysia": "^1.4.28"
-  }
+    "bun-types": "latest",
+    "dotenv": "^17.4.2"
+  },
+  "module": "src/index.js"
 }
