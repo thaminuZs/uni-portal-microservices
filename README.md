@@ -1,24 +1,24 @@
 #### Base URL
-http://localhost:5000/api
+> http://localhost:5000/api
 
 ---
 
 #### Lecturer Service APIs
-/api/lecturers
+> /api/lecturers
 
 **Get All Lecturers**
 
-GET /api/lecturers
+> GET /api/lecturers
 
 
 **Get Lecturer By ID**
 
-GET /api/lecturers/:id
+> GET /api/lecturers/:id
 
 
 **Create Lecturer**
 
-POST /api/lecturers
+> POST /api/lecturers
 
 _{
   "name": "Dr. Silva",
@@ -29,17 +29,17 @@ _{
 
 **Update Lecturer**
 
-PUT /api/lecturers/:id
+> PUT /api/lecturers/:id
 
 
 **Delete Lecturer**
 
-DELETE /api/lecturers/:id
+> DELETE /api/lecturers/:id
 
 
 **Mark Attendance**
 
-POST /api/lecturers/:id/attendance
+> POST /api/lecturers/:id/attendance
 
 _{
   "status": "present"
@@ -47,7 +47,7 @@ _{
 
 
 **Get Attendance Logs**
-GET /api/lecturers/:id/attendance
+> GET /api/lecturers/:id/attendance
 
 ---
 
