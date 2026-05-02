@@ -1,8 +1,5 @@
 # dependencies
-/src/gateway/node_modules
-/src/services/canteen-service/node_modules
-/src/services/lecturer-service/node_modules
-/src/services/library-service/node_modules
+node_modules/
 
 # environment
 .env
