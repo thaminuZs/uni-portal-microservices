@@ -1,9 +1,9 @@
-#### Base URL
+### Base URL
 > http://localhost:5000/api
 
 ---
 
-#### Lecturer Service APIs
+### Lecturer Service APIs
 > /api/lecturers
 
 **Get All Lecturers**
