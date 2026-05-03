@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5002;
 
 const app = express();
 app.use(express.json());
-app.use("/api/lecturers", lecturerRoutes);
+app.use("/", lecturerRoutes);
 app.use(errorHandler);
 
 dbConnection()

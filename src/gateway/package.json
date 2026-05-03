@@ -10,6 +10,7 @@
     "elysia": "latest"
   },
   "devDependencies": {
+    "@elysiajs/cors": "^1.4.2",
     "bun-types": "latest",
     "dotenv": "^17.4.2"
   },
