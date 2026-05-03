@@ -1,10 +1,11 @@
 import { Lecturer } from "../models/lecturer-model.js";
 import { AttendanceLog } from "../models/attendanceLog-model.js";
+import { AppError } from "../utils/app-error.js";
 
 export default {
     create: async (data) => {
-        const exists = await Lecturer.find({email: data.email});
-        if (exists) throw new Error("lecturer with this email already exists");
+        const exists = await Lecturer.findOne({email: data.email});
+        if (exists) throw new AppError(400, "lecturer with this email already exists");
 
         const createdLecturer = await Lecturer.create(data);
 
@@ -19,14 +20,14 @@ export default {
 
     getById: async (id) => {
         const lecturer = await Lecturer.findById(id);
-        if (!lecturer) throw new Error("can't find lecturer with this id");
+        if (!lecturer) throw new AppError(404, "can't find lecturer with this id");
 
         return lecturer;
     },
 
     update: async (id, data) => {
         const lecturer = await Lecturer.findById(id);
-        if (!lecturer) throw new Error("can't find lecturer with this id");
+        if (!lecturer) throw new AppError(404, "can't find lecturer with this id");
 
         const updatedLecturer = await Lecturer.findByIdAndUpdate(id, data, {new: true});
 
@@ -35,7 +36,7 @@ export default {
 
     delete: async (id) => {
         const lecturer = await Lecturer.findById(id);
-        if (!lecturer) throw new Error("can't find lecturer with this id");
+        if (!lecturer) throw new AppError(404, "can't find lecturer with this id");
 
         const deletedLecturer = await Lecturer.findByIdAndDelete(id);
 
@@ -44,12 +45,12 @@ export default {
 
     markAttendance: async (id, status) => {
         const exists = await Lecturer.findById(id);
-        if (!exists) throw new Error("can't find lecturer with this id");
+        if (!exists) throw new AppError(404, "can't find lecturer with this id");
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        let record = await AttendanceLog.find({lecturerId: id, date: today});
+        let record = await AttendanceLog.findOne({lecturerId: id, date: today});
 
         if (record) {
             record.status = status;
@@ -67,5 +68,11 @@ export default {
         });
 
         return record;
+    },
+
+    getLogs: async () => {
+        const logs = await AttendanceLog.find();
+
+        return logs;
     }
 }

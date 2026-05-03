@@ -1,11 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import { dbConnection } from "./config/db.js";
+import { lecturerRoutes } from "./routes/lecturer-route.js";
+import { errorHandler } from "./middleware/error-middleware.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 5002;
 
 const app = express();
+app.use(express.json());
+app.use("/api/lecturers", lecturerRoutes);
+app.use(errorHandler);
 
 dbConnection()
     .then(() => {
