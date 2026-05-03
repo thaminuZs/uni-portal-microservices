@@ -1,10 +1,12 @@
 import express from "express";
-import dotenv from "dotenv";
 import { dbConnection } from "./config/db.js";
 import { lecturerRoutes } from "./routes/lecturer-route.js";
 import { errorHandler } from "./middleware/error-middleware.js";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
 const PORT = process.env.PORT || 5002;
 
 const app = express();

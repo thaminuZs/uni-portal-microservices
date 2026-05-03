@@ -1,8 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import { dbConnection } from "./config/db.js";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
+
 const PORT = process.env.PORT || 5001;
 
 const app = express();
