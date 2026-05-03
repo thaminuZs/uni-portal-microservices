@@ -1,11 +1,13 @@
 import { Elysia } from "elysia";
-import dotenv from "dotenv";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
 const PORT = Number(process.env.PORT) || 5000;
 
 const app = new Elysia();
 
 app.listen(PORT, () => {
-  console.log(`uni portal is running on ${PORT}`);
+  console.log(`uni portal gateway is running on ${PORT}`);
 });
