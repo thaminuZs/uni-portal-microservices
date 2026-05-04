@@ -1,6 +1,6 @@
 import { Canteen } from "../models/canteen-model.js";
 import { QueueLog } from "../models/queueLog-model.js";
-import { AppError } from "../../lecturer-service/utils/app-error.js";
+import { AppError } from "../utils/app-error.js";
 
 export default {
     create: async (data) => {
