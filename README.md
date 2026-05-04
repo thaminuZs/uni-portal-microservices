@@ -1,6 +1,6 @@
 ## System Architecture
 
-::: mermaid
+```mermaid
 graph TD
     User((User)) --> Gateway
 
@@ -33,7 +33,7 @@ graph TD
     style Lecturer fill:#fff,stroke:#2496ed
     style Canteen fill:#fff,stroke:#2496ed
     style Library fill:#fff,stroke:#2496ed
-:::
+```
 
 ---
 
