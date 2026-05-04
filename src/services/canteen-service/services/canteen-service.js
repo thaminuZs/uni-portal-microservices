@@ -1,0 +1,65 @@
+import { Canteen } from "../models/canteen-model.js";
+import { QueueLog } from "../models/queueLog-model.js";
+import { AppError } from "../../lecturer-service/utils/app-error.js";
+
+export default {
+    create: async (data) => {
+        const exist = await Canteen.findOne({name: data.name});
+        if (exist) throw new AppError(400, "lecturer with this email already exists");
+
+        const createdCanteen = await Canteen.create(data);
+
+        return createdCanteen;
+    },
+
+    getAll: async () => {
+        const canteens = await Canteen.find();
+
+        return canteens;
+    },
+
+    getById: async (id) => {
+        const canteen = await Canteen.findById(id);
+        if (!canteen) throw new AppError(404, "can't find a canteen with this id");
+
+        return canteen;
+    },
+
+    reportQueue: async (id, level) => {
+        const canteen = await Canteen.findById(id);
+        if (!canteen) throw new AppError(404, "can't find a canteen with this id");
+
+        const slot = new Date();
+        const slotMinutes = slot.getMinutes() >= 30 ? 30: 0;
+        slot.setMinutes(slotMinutes, 0, 0);
+
+        const now = new Date();
+        await Canteen.findByIdAndUpdate(id, {currentQueue: level, updatedAt: now});
+
+        let record = await QueueLog.findOne({canteedId: id, slot});
+
+        if (record) {
+            record.level = level;
+            record.timeStamp = now;
+
+            await record.save();
+            return record;
+        }
+
+        record = await QueueLog.create({
+            canteedId: id,
+            level: level,
+            slot,
+            timeStamp: now
+        });
+
+        return record;
+
+    },
+
+    getLogs: async () => {
+        const logs = await QueueLog.find();
+    
+        return logs;
+    }
+}

@@ -29,7 +29,7 @@ export default {
         const lecturer = await Lecturer.findById(id);
         if (!lecturer) throw new AppError(404, "can't find lecturer with this id");
 
-        const updatedLecturer = await Lecturer.findByIdAndUpdate(id, data, {new: true, runValidators: true});
+        const updatedLecturer = await Lecturer.findByIdAndUpdate(id, data, {new: true, upsert: true});
 
         return updatedLecturer;
     },
@@ -50,11 +50,14 @@ export default {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
+        const now = new Date();
+        await Lecturer.findByIdAndUpdate(id, {status, lastSeen: now});
+        
         let record = await AttendanceLog.findOne({lecturerId: id, date: today});
 
         if (record) {
             record.status = status;
-            record.timestamp = new Date();
+            record.timestamp = now;
 
             await record.save();
             return record;
@@ -64,7 +67,7 @@ export default {
             lecturerId: id,
             date: today,
             status,
-            timestamp: new Date()
+            timestamp: now
         });
 
         return record;

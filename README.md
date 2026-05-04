@@ -4,18 +4,22 @@
 graph TD
     User((User)) --> Gateway
 
-    subgraph External [Entry Point]
-        Gateway[("Gateway Container")]
-    end
+    subgraph SystemBoundary [UniPortal Microservices System]
+        style SystemBoundary fill:#fdfdfd,stroke:#999,stroke-dasharray: 5 5
 
-    subgraph LogicTier [Service Layer]
-        Lecturer[("Lecturer Service")]
-        Canteen[("Canteen Service")]
-        Library[("Library Service")]
-    end
+        subgraph External [Entry Point]
+            Gateway[("Gateway Container")]
+        end
 
-    subgraph DataTier [Storage]
-        DB[("MongoDB Container")]
+        subgraph LogicTier [Service Layer]
+            Lecturer[("Lecturer Service")]
+            Canteen[("Canteen Service")]
+            Library[("Library Service")]
+        end
+
+        subgraph DataTier [Storage]
+            DB[("MongoDB Container")]
+        end
     end
 
     %% Communication Flow
@@ -28,11 +32,11 @@ graph TD
     Library --> DB
 
     %% Styling
-    style Gateway fill:#f96,stroke:#333,stroke-width:2px
+    style Gateway fill:#f96,stroke:#333,stroke-width:2px,color:#222
     style DB fill:#4db33d,stroke:#333,stroke-width:2px,color:#fff
-    style Lecturer fill:#fff,stroke:#2496ed
-    style Canteen fill:#fff,stroke:#2496ed
-    style Library fill:#fff,stroke:#2496ed
+    style Lecturer fill:#fff,stroke:#2496ed,color:#222
+    style Canteen fill:#fff,stroke:#2496ed,color:#222
+    style Library fill:#fff,stroke:#2496ed,color:#222
 ```
 
 ---
@@ -107,9 +111,6 @@ graph TD
 
 **Get Queue History**
 > GET /api/canteens/:id/queue
-
-**Get Current Queue**
-> GET /api/canteens/:id/queue/current
 
 ---
 
