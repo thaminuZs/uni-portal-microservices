@@ -4,20 +4,20 @@
 graph TD
     User((User)) --> Gateway
 
-    subgraph SystemBoundary [UniPortal Microservices System]
-        style SystemBoundary fill:#fdfdfd,stroke:#999,stroke-dasharray: 5 5
-
-        subgraph External [Entry Point]
+    subgraph SystemBoundary ["UniPortal Microservices System"]
+        direction TB
+        
+        subgraph External ["Entry Point"]
             Gateway[("Gateway Container")]
         end
 
-        subgraph LogicTier [Service Layer]
+        subgraph LogicTier ["Service Layer"]
             Lecturer[("Lecturer Service")]
             Canteen[("Canteen Service")]
             Library[("Library Service")]
         end
 
-        subgraph DataTier [Storage]
+        subgraph DataTier ["Storage"]
             DB[("MongoDB Container")]
         end
     end
@@ -31,12 +31,13 @@ graph TD
     Canteen --> DB
     Library --> DB
 
-    %% Styling
-    style Gateway fill:#f96,stroke:#333,stroke-width:2px,color:#222
+    %% Enhanced Styling for Visibility
+    style SystemBoundary fill:#fdfdfd,stroke:#999,stroke-dasharray: 5 5,color:#333
+    style Gateway fill:#f96,stroke:#333,stroke-width:2px,color:#000
     style DB fill:#4db33d,stroke:#333,stroke-width:2px,color:#fff
-    style Lecturer fill:#fff,stroke:#2496ed,color:#222
-    style Canteen fill:#fff,stroke:#2496ed,color:#222
-    style Library fill:#fff,stroke:#2496ed,color:#222
+    style Lecturer fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
+    style Canteen fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
+    style Library fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
 ```
 
 ---
