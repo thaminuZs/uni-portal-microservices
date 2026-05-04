@@ -24,7 +24,7 @@ app.use(cors())
 
 .get("/", () => "gateway")
 
-.all("/api/lecturers*", (ctx) => lecturerProxy(ctx))
+.all("/api/lecturers*", (ctx) => lecturerProxy(ctx), {parse: 'none'})
 
 
 app.listen(PORT, () => {
