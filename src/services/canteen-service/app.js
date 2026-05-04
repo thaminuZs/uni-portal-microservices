@@ -1,5 +1,7 @@
 import express from "express";
 import { dbConnection } from "./config/db.js";
+import { canteenRoutes } from "./routes/canteen-routes.js";
+import { errorHandler } from "./middleware/error-middleware.js";
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = await import("dotenv");
@@ -9,6 +11,9 @@ if (process.env.NODE_ENV !== "production") {
 const PORT = process.env.PORT || 5001;
 
 const app = express();
+app.use(express.json());
+app.use("/", canteenRoutes);
+app.use(errorHandler);
 
 dbConnection()
     .then(() => {
