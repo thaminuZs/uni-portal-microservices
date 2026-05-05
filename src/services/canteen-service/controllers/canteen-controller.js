@@ -45,6 +45,23 @@ export default {
         }
     },
 
+
+    updateFoodMenu: async (req, res, next) => {
+        try {
+            const id = req.params.id;
+
+            const canteen = await canteenService.updateMenu(id, req.body.menu);
+
+            res.status(200).json({
+                success: true,
+                data: canteen
+            });
+        }
+        catch (err) {
+            next(err);
+        }
+    },
+
     reportQueueStatus: async (req, res, next) => {
         try {
             const id = req.params.id;

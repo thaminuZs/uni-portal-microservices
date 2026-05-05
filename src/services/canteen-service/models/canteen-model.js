@@ -6,6 +6,10 @@ const canteenSchema = new Schema({
         required: true,
         unique: true
     },
+    menu: {
+        type: [String],
+        default: []
+    },
     currentQueue: {
         type: String,
         enum: ["low", "mid", "high"],

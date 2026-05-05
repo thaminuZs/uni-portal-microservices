@@ -5,7 +5,7 @@ import { AppError } from "../utils/app-error.js";
 export default {
     create: async (data) => {
         const exist = await Canteen.findOne({name: data.name});
-        if (exist) throw new AppError(400, "lecturer with this email already exists");
+        if (exist) throw new AppError(400, "canteen with this name already exists");
 
         const createdCanteen = await Canteen.create(data);
 
@@ -23,6 +23,15 @@ export default {
         if (!canteen) throw new AppError(404, "can't find a canteen with this id");
 
         return canteen;
+    },
+
+    updateMenu: async (id, menu) => {
+        const canteen = await Canteen.findById(id);
+        if (!canteen) throw new AppError(404, "can't find a canteen with this id");
+
+        const updatedCanteen = await Canteen.findByIdAndUpdate(id, {menu}, {new: true});
+
+        return updatedCanteen;
     },
 
     reportQueue: async (id, level) => {

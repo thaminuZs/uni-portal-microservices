@@ -98,8 +98,11 @@ graph TD
 **Get Single Canteen**
 > GET /api/canteens/:id
 
-**Create canteen**
+**Create Canteen**
 > POST /api/canteens
+
+**Update Menu**
+> PATCH /api/canteens/:id/menu
 
 **Report Queue Status**
 > POST /api/canteens/:id/queue

@@ -7,6 +7,7 @@ app
     .get("/", canteenController.getAllCanteens)
     .get("/:id", canteenController.getCanteenById)
     .post("/", canteenController.createCanteen)
+    .patch("/:id/menu", canteenController.updateFoodMenu)
     .post("/:id/queue", canteenController.reportQueueStatus)
     .get("/:id/queue", canteenController.getQueueLogs)
 
