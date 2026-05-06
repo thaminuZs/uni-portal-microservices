@@ -2,42 +2,48 @@
 
 ```mermaid
 graph TD
-    User((User)) --> Gateway
+    %% Class Definitions for GitHub Visibility
+    classDef userStyle fill:#333,stroke:#000,stroke-width:2px,color:#fff;
+    classDef gatewayStyle fill:#E67E22,stroke:#D35400,stroke-width:2px,color:#fff;
+    classDef serviceStyle fill:#2980B9,stroke:#1C5980,stroke-width:2px,color:#fff;
+    classDef dbStyle fill:#27AE60,stroke:#1E8449,stroke-width:2px,color:#fff;
+    classDef boundaryStyle fill:#ffffff,stroke:#7F8C8D,stroke-width:2px,stroke-dasharray: 5 5,color:#2C3E50;
 
-    subgraph SystemBoundary ["UniPortal Microservices System"]
-        direction TB
+    %% External User
+    User((<b>User</b>)):::userStyle
+
+    subgraph SystemBoundary ["<b>UniPortal System</b>"]
         
-        subgraph External ["Entry Point"]
-            Gateway[("Gateway Container")]
+        subgraph Layer1 ["<b>Entry Point</b>"]
+            Gateway["<b>Gateway Container</b><br>Bun.js"]:::gatewayStyle
         end
 
-        subgraph LogicTier ["Service Layer"]
-            Lecturer[("Lecturer Service")]
-            Canteen[("Canteen Service")]
-            Library[("Library Service")]
+        subgraph Layer2 ["<b>Service Layer</b>"]
+            Lecturer["<b>Lecturer Service Container</b><br>Node.js"]:::serviceStyle
+            Canteen["<b>Canteen Service Container</b><br>Node.js"]:::serviceStyle
+            Library["<b>Library Service Container</b><br>Node.js"]:::serviceStyle
         end
 
-        subgraph DataTier ["Storage"]
-            DB[("MongoDB Container")]
+        subgraph Layer3 ["<b>Data Tier</b>"]
+            DB[("<b>MongoDB Container</b>")]:::dbStyle
         end
     end
 
     %% Communication Flow
-    Gateway --> Lecturer
-    Gateway --> Canteen
-    Gateway --> Library
+    User -- "Request" --> Gateway
+    
+    %% Gateway fetching from services
+    Gateway -- "Fetches from" --> Lecturer
+    Gateway -- "Fetches from" --> Canteen
+    Gateway -- "Fetches from" --> Library
 
-    Lecturer --> DB
-    Canteen --> DB
-    Library --> DB
+    %% Services accessing the Database
+    Lecturer -- "Read/Write" --> DB
+    Canteen -- "Read/Write" --> DB
+    Library -- "Read/Write" --> DB
 
-    %% Enhanced Styling for Visibility
-    style SystemBoundary fill:#fdfdfd,stroke:#999,stroke-dasharray: 5 5,color:#333
-    style Gateway fill:#f96,stroke:#333,stroke-width:2px,color:#000
-    style DB fill:#4db33d,stroke:#333,stroke-width:2px,color:#fff
-    style Lecturer fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
-    style Canteen fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
-    style Library fill:#fff,stroke:#2496ed,stroke-width:2px,color:#000
+    %% Apply Style to Boundaries
+    class SystemBoundary,Layer1,Layer2,Layer3 boundaryStyle
 ```
 
 ---
@@ -103,6 +109,12 @@ graph TD
 
 **Update Menu**
 > PATCH /api/canteens/:id/menu
+
+```json
+{
+  "menu": ["rice", "thosai"]
+}
+```
 
 **Report Queue Status**
 > POST /api/canteens/:id/queue
