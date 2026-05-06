@@ -9,7 +9,7 @@ app
     .post("/", canteenController.createCanteen)
     .patch("/:id/menu", canteenController.updateFoodMenu)
     .post("/:id/queue", canteenController.reportQueueStatus)
-    .get("/:id/queue", canteenController.getQueueLogs)
+    .get("/:id/queue/logs", canteenController.getQueueLogs)
 
 
 export { app as canteenRoutes }

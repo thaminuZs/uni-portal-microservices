@@ -130,7 +130,7 @@ graph TD
 ```
 
 **Get Queue History**
-> GET /api/canteens/:id/queue
+> GET /api/canteens/:id/queue/logs
 
 ---
 
@@ -154,9 +154,6 @@ graph TD
   "count": 320
 }
 ```
-
-**Get Current Occupancy**
-> GET /api/libraries/:id/occupancy
 
 **Get Occupancy Logs**
 > GET /api/libraries/:id/occupancy/logs

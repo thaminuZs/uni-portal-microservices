@@ -18,6 +18,9 @@ const librarySchema = new Schema({
         type: String,
         enum: ["empty", "moderate", "full"],
         default: "empty"
+    },
+    updatedAt: {
+        type: Date
     }
 });
 

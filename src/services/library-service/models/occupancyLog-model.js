@@ -6,10 +6,14 @@ const occupancyLogSchema = new Schema({
         required: true,
         ref: "Library"
     },
-    count: {
+    occupancy: {
         type: Number,
         required: true,
         default: 0,
+    },
+    slot: {
+        type: Date,
+        required: true
     },
     timeStamp: {
         type: Date,

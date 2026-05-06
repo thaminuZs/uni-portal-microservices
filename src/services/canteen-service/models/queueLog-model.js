@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const queueLogSchema = new Schema({
-    canteedId: {
+    canteenId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: "Canteen"

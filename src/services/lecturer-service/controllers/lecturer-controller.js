@@ -31,7 +31,7 @@ export default {
 
     getLecturerById: async (req, res, next) => {
         try {
-            const {id} = req.body;
+            const id = req.params.id;
 
             const lecturer = await lecturerService.getById(id);
 
@@ -93,7 +93,8 @@ export default {
 
     getAllLogs: async (req, res, next) => {
         try {
-            const logs = await lecturerService.getLogs();
+            const id = req.params.id;
+            const logs = await lecturerService.getLogs(id);
 
             res.status(200).json({
                 success: true,

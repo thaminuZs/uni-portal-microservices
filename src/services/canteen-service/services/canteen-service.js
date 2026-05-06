@@ -45,7 +45,7 @@ export default {
         const now = new Date();
         await Canteen.findByIdAndUpdate(id, {currentQueue: level, updatedAt: now});
 
-        let record = await QueueLog.findOne({canteedId: id, slot});
+        let record = await QueueLog.findOne({canteenId: id, slot});
 
         if (record) {
             record.level = level;
@@ -56,7 +56,7 @@ export default {
         }
 
         record = await QueueLog.create({
-            canteedId: id,
+            canteenId: id,
             level: level,
             slot,
             timeStamp: now
@@ -66,8 +66,8 @@ export default {
 
     },
 
-    getLogs: async () => {
-        const logs = await QueueLog.find();
+    getLogs: async (id) => {
+        const logs = await QueueLog.find({canteenId: id});
     
         return logs;
     }

@@ -2,6 +2,7 @@ import { Elysia } from "elysia";
 import { cors } from "@elysiajs/cors";
 import { lecturerProxy } from "./routes/lecturer-proxy";
 import { canteenProxy } from "./routes/canteen-proxy";
+import { libraryProxy } from "./routes/library-proxy";
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = await import("dotenv");
@@ -27,6 +28,7 @@ app.use(cors())
 
 .all("/api/lecturers*", (ctx) => lecturerProxy(ctx), {parse: 'none'})
 .all("/api/canteens*", (ctx) => canteenProxy(ctx), {parse: 'none'})
+.all("/api/libraries*", (ctx) => libraryProxy(ctx), {parse: 'none'})
 
 
 app.listen(PORT, () => {

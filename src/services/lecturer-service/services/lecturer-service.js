@@ -29,7 +29,7 @@ export default {
         const lecturer = await Lecturer.findById(id);
         if (!lecturer) throw new AppError(404, "can't find lecturer with this id");
 
-        const updatedLecturer = await Lecturer.findByIdAndUpdate(id, data, {new: true, upsert: true});
+        const updatedLecturer = await Lecturer.findByIdAndUpdate(id, data, {new: true});
 
         return updatedLecturer;
     },
@@ -73,8 +73,8 @@ export default {
         return record;
     },
 
-    getLogs: async () => {
-        const logs = await AttendanceLog.find();
+    getLogs: async (id) => {
+        const logs = await AttendanceLog.find({lecturerId: id});
 
         return logs;
     }

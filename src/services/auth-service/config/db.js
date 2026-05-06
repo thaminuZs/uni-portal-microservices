@@ -5,10 +5,10 @@ export const dbConnection = async () => {
 
     try {
         const conn = await mongoose.connect(mongoUri);
-        console.log(`lecturer db connected ${conn.connection.host}`);
+        console.log(`authentication db connected ${conn.connection.host}`);
     }
     catch (err) {
-        console.log(`lecturer db connection error ${err.message}`);
+        console.log(`authentication db connection error ${err.message}`);
         process.exit(1);
     }
 }

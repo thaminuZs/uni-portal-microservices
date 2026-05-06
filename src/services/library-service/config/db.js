@@ -5,10 +5,10 @@ export const dbConnection = async () => {
 
     try {
         const conn = await mongoose.connect(mongoUri);
-        console.log(`db connected ${conn.connection.host}`);
+        console.log(`library db connected ${conn.connection.host}`);
     }
     catch (err) {
-        console.log(`db connection error ${err.message}`);
+        console.log(`library db connection error ${err.message}`);
         process.exit(1);
     }
 }

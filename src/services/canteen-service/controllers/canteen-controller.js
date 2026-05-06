@@ -31,7 +31,7 @@ export default {
 
     getCanteenById: async (req, res, next) => {
         try {
-            const {id} = req.body;
+            const id = req.params.id;
 
             const canteen = await canteenService.getById(id);
 
@@ -79,7 +79,8 @@ export default {
 
     getQueueLogs: async (req, res, next) => {
         try {
-            const logs = await canteenService.getLogs();
+            const id = req.params.id;
+            const logs = await canteenService.getLogs(id);
 
             res.status(200).json({
                 success: true,
