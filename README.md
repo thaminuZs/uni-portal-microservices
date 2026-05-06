@@ -2,7 +2,7 @@
 
 ```mermaid
 graph TD
-    %% Class Definitions for GitHub Visibility
+    %% Class Definitions
     classDef userStyle fill:#333,stroke:#000,stroke-width:2px,color:#fff;
     classDef gatewayStyle fill:#E67E22,stroke:#D35400,stroke-width:2px,color:#fff;
     classDef serviceStyle fill:#2980B9,stroke:#1C5980,stroke-width:2px,color:#fff;
@@ -19,9 +19,10 @@ graph TD
         end
 
         subgraph Layer2 ["<b>Service Layer</b>"]
-            Lecturer["<b>Lecturer Service Container</b><br>Node.js"]:::serviceStyle
-            Canteen["<b>Canteen Service Container</b><br>Node.js"]:::serviceStyle
-            Library["<b>Library Service Container</b><br>Node.js"]:::serviceStyle
+            %% Padded with &nbsp; to ensure uniform box sizing
+            Lecturer["&nbsp;&nbsp;&nbsp;&nbsp;<b>Lecturer Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
+            Canteen["&nbsp;&nbsp;&nbsp;&nbsp;<b>Canteen Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
+            Library["&nbsp;&nbsp;&nbsp;&nbsp;<b>Library Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
         end
 
         subgraph Layer3 ["<b>Data Tier</b>"]
@@ -32,18 +33,21 @@ graph TD
     %% Communication Flow
     User -- "Request" --> Gateway
     
-    %% Gateway fetching from services
     Gateway -- "Fetches from" --> Lecturer
     Gateway -- "Fetches from" --> Canteen
     Gateway -- "Fetches from" --> Library
 
-    %% Services accessing the Database
     Lecturer -- "Read/Write" --> DB
     Canteen -- "Read/Write" --> DB
     Library -- "Read/Write" --> DB
 
     %% Apply Style to Boundaries
     class SystemBoundary,Layer1,Layer2,Layer3 boundaryStyle
+
+    %% FORCING ARROW VISIBILITY:
+    %% This styles all lines to be thicker and dark gray/black to stand out against white backgrounds
+    %% and remain visible on GitHub's dark mode.
+    linkStyle default stroke:#555,stroke-width:2px;
 ```
 
 ---
