@@ -9,6 +9,18 @@ services:
     volumes:
       - mongo_data:/data/db
 
+  auth-service:
+    build: ./services/auth-service
+    ports:
+      - "4004:4004"
+    environment:
+      - PORT=4004
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/auth-db
+      - JWT_SECRET=dubass_change_this_idiot
+    depends_on:
+      - mongo
+
   lecturer-service:
     build: ./services/lecturer-service
     ports:
@@ -49,6 +61,8 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=8080
+      - JWT_SECRET=dubass_change_this_idiot
+      - AUTH_URL=http://auth-service:4004
       - LECTURER_URL=http://lecturer-service:4002
       - CANTEEN_URL=http://canteen-service:4001
       - LIBRARY_URL=http://library-service:4003
