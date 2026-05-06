@@ -19,7 +19,7 @@ graph TD
         end
 
         subgraph Layer2 ["<b>Service Layer</b>"]
-            %% Padded with &nbsp; to ensure uniform box sizing
+            Auth["&nbsp;&nbsp;&nbsp;&nbsp;<b>Auth Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
             Lecturer["&nbsp;&nbsp;&nbsp;&nbsp;<b>Lecturer Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
             Canteen["&nbsp;&nbsp;&nbsp;&nbsp;<b>Canteen Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
             Library["&nbsp;&nbsp;&nbsp;&nbsp;<b>Library Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
@@ -33,10 +33,12 @@ graph TD
     %% Communication Flow
     User -- "Request" --> Gateway
     
+    Gateway -- "Authenticates/Fetches" --> Auth
     Gateway -- "Fetches from" --> Lecturer
     Gateway -- "Fetches from" --> Canteen
     Gateway -- "Fetches from" --> Library
 
+    Auth -- "Read/Write" --> DB
     Lecturer -- "Read/Write" --> DB
     Canteen -- "Read/Write" --> DB
     Library -- "Read/Write" --> DB
@@ -44,9 +46,7 @@ graph TD
     %% Apply Style to Boundaries
     class SystemBoundary,Layer1,Layer2,Layer3 boundaryStyle
 
-    %% FORCING ARROW VISIBILITY:
-    %% This styles all lines to be thicker and dark gray/black to stand out against white backgrounds
-    %% and remain visible on GitHub's dark mode.
+    %% FORCING ARROW VISIBILITY
     linkStyle default stroke:#555,stroke-width:2px;
 ```
 
