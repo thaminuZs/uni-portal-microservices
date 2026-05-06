@@ -73,9 +73,9 @@ graph TD
 
 ```json
 {
-  "name": "Dr. Silva",
-  "department": "IT",
-  "email": "silva@uni.edu"
+  "name": "Dr. Kayanan",
+  "department": "Physical Science",
+  "email": "kayanan@vau.edu"
 }
 ```
 
