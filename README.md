@@ -15,14 +15,14 @@ graph TD
     subgraph SystemBoundary ["<b>UniPortal System</b>"]
         
         subgraph Layer1 ["<b>Entry Point</b>"]
-            Gateway["<b>Gateway Container</b><br>Bun.js"]:::gatewayStyle
+            Gateway["<b>Gateway Container</b><br>Bun.js - Elysia"]:::gatewayStyle
         end
 
         subgraph Layer2 ["<b>Service Layer</b>"]
             %% Padded with &nbsp; to ensure uniform box sizing
-            Lecturer["&nbsp;&nbsp;&nbsp;&nbsp;<b>Lecturer Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
-            Canteen["&nbsp;&nbsp;&nbsp;&nbsp;<b>Canteen Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
-            Library["&nbsp;&nbsp;&nbsp;&nbsp;<b>Library Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js"]:::serviceStyle
+            Lecturer["&nbsp;&nbsp;&nbsp;&nbsp;<b>Lecturer Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
+            Canteen["&nbsp;&nbsp;&nbsp;&nbsp;<b>Canteen Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
+            Library["&nbsp;&nbsp;&nbsp;&nbsp;<b>Library Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
         end
 
         subgraph Layer3 ["<b>Data Tier</b>"]
