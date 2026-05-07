@@ -12,8 +12,8 @@ if (process.env.NODE_ENV !== "production") {
 const PORT = Number(process.env.PORT) || 5000;
 
 const app = new Elysia()
-  .onError(({error, code}) => {
-    
+  .onError(({error, set}) => {
+
   });
 
 app.use(cors())
