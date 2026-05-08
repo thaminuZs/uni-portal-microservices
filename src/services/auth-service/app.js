@@ -15,10 +15,8 @@ app.use(express.json());
 app.use("/", authRoutes);
 app.use(errorHandler);
 
-dbConnection()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`server is on ${PORT}`);
-        })
-    });
-
+dbConnection().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server is on ${PORT}`);
+  });
+});

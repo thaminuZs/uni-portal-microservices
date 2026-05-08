@@ -4,6 +4,7 @@ import { lecturerProxy } from "./routes/lecturer-proxy";
 import { canteenProxy } from "./routes/canteen-proxy";
 import { libraryProxy } from "./routes/library-proxy";
 import { authProxy } from "./routes/auth-proxy";
+import { validateJwtFromRequest } from "./middleware/jwt-auth";
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = await import("dotenv");
@@ -11,30 +12,51 @@ if (process.env.NODE_ENV !== "production") {
 }
 const PORT = Number(process.env.PORT) || 5000;
 
-const app = new Elysia()
-  .onError(({error, set}) => {
+const app = new Elysia().onError(({ error, set }) => {});
 
-  });
+app
+  .use(cors())
 
-app.use(cors())
+  .onRequest(({ request, set }) => {
+    (set as any).start = Date.now();
+  })
+  .onAfterHandle(({ request, set }) => {
+    const time = Date.now() - (set as any).start;
+    const path = new URL(request.url).pathname;
 
-.onRequest(({request, set}) => {
-  (set as any).start = Date.now();
-})
-.onAfterHandle(({request, set}) => {
-  const time = Date.now() - (set as any).start;
-  const path = new URL(request.url).pathname;
+    console.log(`${request.method} ${path} ${set.status} ${time}ms`);
+  })
 
-  console.log(`${request.method} ${path} ${set.status} ${time}ms`);
-})
+  .get("/", () => "gateway")
 
-.get("/", () => "gateway")
+  .all("/api/auth*", (ctx) => authProxy(ctx), { parse: "none" })
 
-.all("/api/auth*", (ctx) => authProxy(ctx), {parse: 'none'})
-.all("/api/lecturers*", (ctx) => lecturerProxy(ctx), {parse: 'none'})
-.all("/api/canteens*", (ctx) => canteenProxy(ctx), {parse: 'none'})
-.all("/api/libraries*", (ctx) => libraryProxy(ctx), {parse: 'none'})
+  .all(
+    "/api/lecturers*",
+    async (ctx) => {
+      const claims = validateJwtFromRequest(ctx.request);
+      return lecturerProxy(ctx, claims);
+    },
+    { parse: "none" },
+  )
 
+  .all(
+    "/api/canteens*",
+    async (ctx) => {
+      const claims = validateJwtFromRequest(ctx.request);
+      return canteenProxy(ctx, claims);
+    },
+    { parse: "none" },
+  )
+
+  .all(
+    "/api/libraries*",
+    async (ctx) => {
+      const claims = validateJwtFromRequest(ctx.request);
+      return libraryProxy(ctx, claims);
+    },
+    { parse: "none" },
+  );
 
 app.listen(PORT, () => {
   console.log(`uni portal gateway is running on ${PORT}`);

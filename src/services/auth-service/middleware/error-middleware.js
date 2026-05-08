@@ -1,8 +1,8 @@
 export const errorHandler = (err, req, res, next) => {
-    console.log(err);
+  console.log(err);
 
-    res.status(500).json({
-        success: false,
-        message: err.message || "internal authentication error"
-    });
-}
+  res.status(500).json({
+    success: false,
+    message: err.message || "internal authentication error",
+  });
+};

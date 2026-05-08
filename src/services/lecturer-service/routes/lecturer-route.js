@@ -1,16 +1,28 @@
 import { Router } from "express";
 import lecturerController from "../controllers/lecturer-controller.js";
+import { allowRoles } from "../middleware/authorize.js";
 
 const app = Router();
 
 app
-    .get("/", lecturerController.getAllLecturers)
-    .get("/:id", lecturerController.getLecturerById)
-    .post("/", lecturerController.createLecturer)
-    .put("/:id", lecturerController.updateLecturer)
-    .delete("/:id", lecturerController.deleteLecturer)
-    .post("/:id/attendance", lecturerController.markLecturerAttendance)
-    .get("/:id/attendance", lecturerController.getAllLogs)
+  .get("/", allowRoles("admin", "student"), lecturerController.getAllLecturers)
+  .get(
+    "/:id",
+    allowRoles("admin", "student"),
+    lecturerController.getLecturerById,
+  )
+  .post("/", allowRoles("admin"), lecturerController.createLecturer)
+  .put("/:id", allowRoles("admin"), lecturerController.updateLecturer)
+  .delete("/:id", allowRoles("admin"), lecturerController.deleteLecturer)
+  .post(
+    "/:id/attendance",
+    allowRoles("admin"),
+    lecturerController.markLecturerAttendance,
+  )
+  .get(
+    "/:id/attendance",
+    allowRoles("admin", "student"),
+    lecturerController.getAllLogs,
+  );
 
-
-export { app as lecturerRoutes }
+export { app as lecturerRoutes };

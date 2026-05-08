@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "@elysiajs/jwt": "^1.4.2",
-    "elysia": "latest"
+    "elysia": "latest",
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
     "@elysiajs/cors": "^1.4.2",
+    "@types/jsonwebtoken": "^9.0.10",
     "bun-types": "latest",
     "dotenv": "^17.4.2"
   },
