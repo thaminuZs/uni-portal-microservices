@@ -4,7 +4,7 @@ export const requireGatewayIdentity = (req, res, next) => {
   const role = req.header("x-user-role");
 
   if (!userId || !email || !role) {
-    return res.status(401).json({ success: false, message: "Unauthorized" });
+    return res.status(401).json({ success: false, message: "unauthorized" });
   }
 
   req.user = { id: userId, email, role };

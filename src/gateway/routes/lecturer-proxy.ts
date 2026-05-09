@@ -16,15 +16,15 @@ export const lecturerProxy = async (
   headers.delete("x-user-email");
   headers.delete("x-user-role");
 
-  headers.set("x-user-id", claims.sub);
-  headers.set("x-user-email", claims.email);
-  headers.set("x-user-role", claims.role);
-
   headers.delete("host");
   headers.delete("connection");
   headers.delete("content-length");
   headers.delete("accept-encoding");
   headers.delete("postman-token");
+
+  headers.set("x-user-id", claims.sub);
+  headers.set("x-user-email", claims.email);
+  headers.set("x-user-role", claims.role);
 
   const options: RequestInit = {
     method,

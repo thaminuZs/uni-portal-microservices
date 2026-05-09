@@ -5,6 +5,7 @@ import { canteenProxy } from "./routes/canteen-proxy";
 import { libraryProxy } from "./routes/library-proxy";
 import { authProxy } from "./routes/auth-proxy";
 import { validateJwtFromRequest } from "./middleware/jwt-auth";
+import { AppError } from "./utils/app-error";
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = await import("dotenv");
@@ -12,7 +13,13 @@ if (process.env.NODE_ENV !== "production") {
 }
 const PORT = Number(process.env.PORT) || 5000;
 
-const app = new Elysia().onError(({ error, set }) => {});
+const app = new Elysia().onError(({ error, set }) => {
+  if (error instanceof AppError) {
+    set.status = error.statusCode;
+    return error.message;
+  }
+  return "internal gateway error";
+});
 
 app
   .use(cors())
