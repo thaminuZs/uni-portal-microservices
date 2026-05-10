@@ -40,7 +40,12 @@ graph TD
     Gateway -- "Fetches from" --> Canteen
     Gateway -- "Fetches from" --> Library
 
-    Dashboard -- "Read/Write" --> DB
+    %% Dashboard Inter-service Communication
+    Dashboard -- "Fetches from" --> Lecturer
+    Dashboard -- "Fetches from" --> Canteen
+    Dashboard -- "Fetches from" --> Library
+
+    %% Service to DB Communication
     Auth -- "Read/Write" --> DB
     Lecturer -- "Read/Write" --> DB
     Canteen -- "Read/Write" --> DB
