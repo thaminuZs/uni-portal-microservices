@@ -5,7 +5,7 @@ import { allowRoles } from "../middleware/authorize.js";
 const app = Router();
 
 app
-  .get("/", allowRoles("admin", "student"), canteenController.getAllCanteens)
+  .get("/", allowRoles("admin", "student", "dash"), canteenController.getAllCanteens)
   .get("/:id", allowRoles("admin", "student"), canteenController.getCanteenById)
   .post("/", allowRoles("admin"), canteenController.createCanteen)
   .patch(

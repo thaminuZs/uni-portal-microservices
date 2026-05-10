@@ -4,6 +4,7 @@ import { lecturerProxy } from "./routes/lecturer-proxy";
 import { canteenProxy } from "./routes/canteen-proxy";
 import { libraryProxy } from "./routes/library-proxy";
 import { authProxy } from "./routes/auth-proxy";
+import { dashProxy } from "./routes/dash-proxy";
 import { validateJwtFromRequest } from "./middleware/jwt-auth";
 import { AppError } from "./utils/app-error";
 
@@ -61,6 +62,14 @@ app
     async (ctx) => {
       const claims = validateJwtFromRequest(ctx.request);
       return libraryProxy(ctx, claims);
+    },
+    { parse: "none" },
+  )
+
+  .all(
+    "/api/dashboard*",
+    async (ctx) => {
+      return dashProxy(ctx);
     },
     { parse: "none" },
   );

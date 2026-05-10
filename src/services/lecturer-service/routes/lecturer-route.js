@@ -5,7 +5,7 @@ import { allowRoles } from "../middleware/authorize.js";
 const app = Router();
 
 app
-  .get("/", allowRoles("admin", "student"), lecturerController.getAllLecturers)
+  .get("/", allowRoles("admin", "student", "dash"), lecturerController.getAllLecturers)
   .get(
     "/:id",
     allowRoles("admin", "student"),
