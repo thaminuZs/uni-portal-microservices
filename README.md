@@ -62,6 +62,40 @@ graph TD
 
 ---
 
+### DashBoard APIs
+> /api/dashboard
+
+**Get Dashboard Info**
+> GET /api/dashboard
+
+---
+
+### Auth Service APIs
+> /api/auth
+
+**Register User**
+> POST /api/auth/register
+
+```json
+{
+    "name": "thami",
+    "email": "thami@mail.com",
+    "password": 123456,
+    "role": "student"
+}
+```
+
+**Login User**
+> POST /api/auth/login
+```json
+{
+    "email": "thami@mail.com",
+    "password": "12345"
+}
+```
+
+---
+
 ### Lecturer Service APIs
 > /api/lecturers
 
@@ -160,24 +194,5 @@ graph TD
 
 **Get Occupancy Logs**
 > GET /api/libraries/:id/occupancy/logs
-
----
-
-### Gateway APIs
-
-**Dashboard API**
-> GET /api/dashboard
-
-```json
-{
-  "lecturersPresent": 12,
-  "canteens": [
-    { "name": "Ammachchi", "queue": "high" }
-  ],
-  "libraries": [
-    { "name": "Main", "status": "full" }
-  ]
-}
-```
 
 ---
