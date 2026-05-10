@@ -19,6 +19,7 @@ graph TD
         end
 
         subgraph Layer2 ["<b>Service Layer</b>"]
+            Dashboard["&nbsp;&nbsp;&nbsp;&nbsp;<b>Dashboard Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Bun.js - Elysia"]:::serviceStyle
             Auth["&nbsp;&nbsp;&nbsp;&nbsp;<b>Auth Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
             Lecturer["&nbsp;&nbsp;&nbsp;&nbsp;<b>Lecturer Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
             Canteen["&nbsp;&nbsp;&nbsp;&nbsp;<b>Canteen Service Container</b>&nbsp;&nbsp;&nbsp;&nbsp;<br>Node.js - Express"]:::serviceStyle
@@ -33,11 +34,13 @@ graph TD
     %% Communication Flow
     User -- "Request" --> Gateway
     
+    Gateway -- "Fetches from" --> Dashboard
     Gateway -- "Authenticates/Fetches" --> Auth
     Gateway -- "Fetches from" --> Lecturer
     Gateway -- "Fetches from" --> Canteen
     Gateway -- "Fetches from" --> Library
 
+    Dashboard -- "Read/Write" --> DB
     Auth -- "Read/Write" --> DB
     Lecturer -- "Read/Write" --> DB
     Canteen -- "Read/Write" --> DB
