@@ -201,3 +201,11 @@ graph TD
 > GET /api/libraries/:id/occupancy/logs
 
 ---
+
+### Logs Viewer
+
+_This project uses Dozzle for realtime Docker log monitoring_
+
+> localhost:8888
+
+---
