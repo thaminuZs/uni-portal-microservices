@@ -2,7 +2,12 @@ import { Elysia } from "elysia";
 
 const app = new Elysia();
 
-const PORT = process.env.PORT!;
+if (process.env.NODE_ENV !== "production") {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
+
+const PORT = Number(process.env.PORT) || 5005;
 const lecturerUrl = process.env.LECTURER_URL!;
 const canteenUrl = process.env.CANTEEN_URL!;
 const libraryUrl = process.env.LIBRARY_URL!;

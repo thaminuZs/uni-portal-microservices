@@ -10,7 +10,8 @@
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "dotenv": "^17.4.2"
   },
   "module": "src/index.js"
 }
