@@ -110,7 +110,7 @@ docker compose up -d
 {
     "name": "thami",
     "email": "thami@mail.com",
-    "password": 123456,
+    "password": "123456",
     "role": "student"
 }
 ```
@@ -142,7 +142,8 @@ docker compose up -d
 {
   "name": "Dr. Kayanan",
   "department": "Physical Science",
-  "email": "kayanan@vau.edu"
+  "email": "kayanan@vau.edu",
+  "lastSeen": "2026-05-10"
 }
 ```
 
@@ -178,6 +179,15 @@ docker compose up -d
 **Create Canteen**
 > POST /api/canteens
 
+```json
+{
+  "name": "ammachchi",
+  "menu": ["puri", "vade"],
+  "currentQueue": "mid",
+  "updatedAt": "2026-05-10T12:00:00"
+}
+```
+
 **Update Menu**
 > PATCH /api/canteens/:id/menu
 
@@ -212,6 +222,16 @@ docker compose up -d
 
 **Create Library**
 > POST /api/libraries
+
+```json
+{
+  "name": "main",
+  "capacity": 300,
+  "currentOccupancy": 100,
+  "status": "moderate",
+  "updatedAt": "2025-05-10T11:05:20"
+}
+```
 
 **Update Occupancy**
 > POST /api/libraries/:id/occupancy
