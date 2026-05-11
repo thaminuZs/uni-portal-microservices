@@ -60,6 +60,31 @@ graph TD
 
 ---
 
+## Getting Started
+
+Install:
+
+- Docker
+- Docker Compose
+
+1. Clone the repo
+
+```bash
+git clone https://github.com/thaminuZs/uni-portal-microservices.git
+
+cd uni-portal-microservices/src
+```
+2. Configure Environment Variables and JWT Keys on docker-compose.yml
+
+3. Build and Start Containers
+```bash
+docker compose build
+
+docker compose up -d
+```
+
+---
+
 ## API Endpoints
 
 ### Base URL
