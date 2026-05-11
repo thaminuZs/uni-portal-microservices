@@ -44,7 +44,7 @@ app.get("/", async (ctx) => {
     (library: any) => library.status === "full",
   ).length;
 
-  if (!presentCount || !presentQueue || !presentCrowd) {
+  if (!lecturerRes || !lecturerRes.data || !canteenRes || !canteenRes.data || !libraryRes || !libraryRes.data) {
     return ctx.status(501, {
       success: false,
       message: "internal service error",
