@@ -13,7 +13,7 @@ const dashHeaders = {
   "x-user-role": "dash",
 };
 
-app.get("/", async () => {
+app.get("/", async (ctx) => {
   const lecturerRes = await (
     await fetch(lecturerUrl, {
       headers: dashHeaders,
@@ -33,23 +33,31 @@ app.get("/", async () => {
   ).json();
 
   const presentCount = lecturerRes.data.filter(
-    (lecturer: any) => lecturer.status === "present"
+    (lecturer: any) => lecturer.status === "present",
   ).length;
 
   const presentQueue = canteenRes.data.filter(
-    (canteen: any) => canteen.currentQueue === "high"
+    (canteen: any) => canteen.currentQueue === "high",
   ).length;
 
   const presentCrowd = libraryRes.data.filter(
-    (library: any) => library.status === "full"
+    (library: any) => library.status === "full",
   ).length;
 
-  console.log(presentCount, presentQueue, presentCrowd);
+  if (!presentCount || !presentQueue || !presentCrowd) {
+    return ctx.status(501, {
+      success: false,
+      message: "internal service error",
+    });
+  }
 
   return {
-    lecturersPresent: presentCount,
-    crowdedCanteens: presentQueue,
-    crowdedLibraries: presentCrowd,
+    success: true,
+    data: {
+      lecturersPresent: presentCount,
+      crowdedCanteens: presentQueue,
+      crowdedLibraries: presentCrowd,
+    },
   };
 });
 
