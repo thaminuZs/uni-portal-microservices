@@ -1,3 +1,37 @@
+# UniPortal
+
+## Problem Description
+
+University students often waste time due to lack of updated information about lecturer availability, library crowd levels and canteen queues. Information is scattered and not easily accessible.
+
+## Proposed Solution
+
+There is a need for a centralized system to provide quick and reliable campus information.
+
+---
+
+## Features
+
+1. Lecturer availability information
+2. Library crowd/status updates
+3. Canteen queue information
+4. Canteen menu viewing
+5. Centralized information dashboard
+6. User login system
+7. Role-based access (Admin & Student)
+8. Easy and fast access to university information
+
+---
+
+## Tech Stack
+
++ Backend: Node.js, Bun.js, Express, Elysia
++ Database: MongoDB
++ Containerization: Docker
++ Version Control: Git & GitHub
+
+---
+
 ## System Architecture
 
 ```mermaid
