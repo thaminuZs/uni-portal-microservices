@@ -94,6 +94,73 @@ graph TD
 
 ---
 
+## File Structure
+
+```text
+uni-portal-backend/
+└── src/
+    ├── docker-compose.yml
+    ├── gateway/
+    │   ├── Dockerfile
+    │   ├── index.ts
+    │   ├── middleware/
+    │   ├── package.json
+    │   ├── routes/
+    │   ├── tsconfig.json
+    │   └── utils/
+    └── services/
+        ├── auth-service/
+        │   ├── app.js
+        │   ├── config/
+        │   ├── controllers/
+        │   ├── Dockerfile
+        │   ├── middleware/
+        │   ├── models/
+        │   ├── package.json
+        │   └── routes/
+        ├── canteen-service/
+        │   ├── app.js
+        │   ├── config/
+        │   ├── controllers/
+        │   ├── Dockerfile
+        │   ├── middleware/
+        │   ├── models/
+        │   ├── package.json
+        │   ├── routes/
+        │   ├── services/
+        │   └── utils/
+        ├── dashboard-service/
+        │   ├── Dockerfile
+        │   ├── index.ts
+        │   ├── package.json
+        │   └── tsconfig.json
+        ├── lecturer-service/
+        │   ├── app.js
+        │   ├── config/
+        │   ├── controllers/
+        │   ├── Dockerfile
+        │   ├── middleware/
+        │   ├── models/
+        │   ├── package.json
+        │   ├── routes/
+        │   ├── services/
+        │   └── utils/
+        └── library-service/
+            ├── app.js
+            ├── config/
+            ├── controllers/
+            ├── Dockerfile
+            ├── middleware/
+            ├── models/
+            ├── package.json
+            ├── routes/
+            ├── services/
+            └── utils/
+
+```
+
+---
+
 ## Getting Started
 
 Install:
